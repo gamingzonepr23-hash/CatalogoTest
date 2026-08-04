@@ -14,8 +14,8 @@ var firebaseConfig = {
 };
 
 // Inicializa Firebase.
-if (!window.firebase.apps.length) {
-  window.firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 }
 
 window.auth = window.firebase.auth();
