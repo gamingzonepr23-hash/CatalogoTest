@@ -2,7 +2,7 @@
 // Usa esta plantilla con la configuración web del proyecto Firebase.
 // El archivo de servicio que compartiste es para la Admin SDK en servidor,
 // no debe incluirse directamente en el frontend.
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyCBiB9d6bxnxZKmt4awqcFih85fHHPwvls",
   authDomain: "my-store-b57e1.firebaseapp.com",
   databaseURL: "https://my-store-b57e1-default-rtdb.firebaseio.com",
@@ -13,10 +13,9 @@ var firebaseConfig = {
   measurementId: "G-VGWPGHCJ5J"
 };
 
-// Inicializa Firebase.
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-}
 
 window.auth = window.firebase.auth();
 window.db = window.firebase.firestore();
