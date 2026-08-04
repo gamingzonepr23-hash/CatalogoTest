@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JRUnlocks | Contacto</title>
+    <meta
+      name="description"
+      content="Página de contacto de JRUnlocks con email, WhatsApp, horarios y formulario de consulta."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="login.js" defer></script>
+  </head>
+  <body onload="ensureLoggedIn('index.html')">
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand" aria-label="JRUnlocks brand">
+          <span class="brand-mark">JR</span>
+          <span class="brand-copy">
+            <span class="brand-name">JRUnlocks</span>
+            <span class="brand-tag">Tech Catalog</span>
+          </span>
+        </div>
+
+        <form class="site-search" role="search" action="#">
+          <select class="search-cats" aria-label="Categoría">
+            <option value="all">Todas las categorías</option>
+            <option value="monitores">Monitores</option>
+            <option value="hardware">Hardware</option>
+            <option value="soporte">Soporte</option>
+          </select>
+          <input class="search-input" type="search" placeholder="Buscar monitores, hardware, accesorios..." aria-label="Buscar" />
+          <button class="search-btn" type="submit">Buscar</button>
+        </form>
+
+        <nav class="nav-links" aria-label="Navegación principal">
+          <a href="index.html" class="nav-item home-link">Inicio</a>
+          <a href="monitores.html" class="nav-item">Monitores</a>
+          <a href="hardware.html" class="nav-item">Hardware</a>
+          <a href="soporte.html" class="nav-item">Soporte</a>
+          <a href="contacto.html" class="nav-item active">Contacto</a>
+        </nav>
+        <button class="profile-avatar" type="button" onclick="window.location.href='perfil.html'" aria-label="Perfil de usuario"></button>
+      </div>
+    </header>
+
+    <main>
+      <section class="contact-page">
+        <div class="container contact-inner">
+          <div class="page-heading">
+            <p class="eyebrow">Contacto</p>
+            <h1>Estamos listos para ayudarte</h1>
+            <p class="lead">Escríbenos o envía tu consulta y te responderemos lo antes posible.</p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h2>Información de contacto</h2>
+              <p>JRUnlocks ofrece atención técnica y comercial para hardware, monitores y redes.</p>
+
+              <div class="contact-details">
+                <p><strong>Email:</strong> <a href="mailto:unlockpr2011@gmail.com">unlockpr2011@gmail.com</a></p>
+                <p><strong>WhatsApp:</strong> <a href="https://wa.me/19392063234">+1 939 206 3234</a></p>
+                <p><strong>Teléfono:</strong> +1 939 206 3234</p>
+                <p><strong>Horario:</strong> Lun-Vie de 8am a 7pm</p>
+              </div>
+
+              <div class="contact-note">
+                <p>Para cotizaciones, soporte técnico y consultas de producto, usa el formulario o envíanos un mensaje directo.</p>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <h2>Envíanos un mensaje</h2>
+              <form class="contact-form" action="#" method="post">
+                <label for="name">Nombre completo</label>
+                <input id="name" type="text" name="name" placeholder="Tu nombre" required />
+
+                <label for="email-contact">Correo electrónico</label>
+                <input id="email-contact" type="email" name="email" placeholder="tucorreo@ejemplo.com" required />
+
+                <label for="message">Mensaje</label>
+                <textarea id="message" name="message" placeholder="Cuéntanos cómo podemos ayudarte" rows="6" required></textarea>
+
+                <div class="form-actions">
+                  <button class="button primary" type="submit">Enviar mensaje</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>
+          <div class="brand footer-brand">
+            <span class="brand-mark">JR</span>
+            <span>JRUnlocks</span>
+          </div>
+          <p>Catálogo técnico para hardware, redes y soluciones digitales.</p>
+        </div>
+        <a class="button primary" href="mailto:unlockpr2011@gmail.com">Solicitar presupuesto</a>
+        <p style="margin:0.7rem 0 0;color:var(--muted);font-size:0.95rem;display:flex;align-items:center;gap:8px;">
+          <img src="assets/icons/whatsapp.png" alt="WhatsApp" width="20" height="20" />
+          WhatsApp: <a href="https://wa.me/19392063234" style="color:var(--primary);text-decoration:none;">1-939-206-3234</a>
+        </p>
+      </div>
+    </footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        document.body.classList.add('ready');
+        document.body.classList.remove('fade-out');
+      });
+      window.addEventListener('pageshow', function () {
+        document.body.classList.add('ready');
+        document.body.classList.remove('fade-out');
+      });
+    </script>
+  </body>
+</html>
