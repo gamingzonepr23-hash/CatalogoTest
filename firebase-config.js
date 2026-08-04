@@ -3,12 +3,14 @@
 // El archivo de servicio que compartiste es para la Admin SDK en servidor,
 // no debe incluirse directamente en el frontend.
 var firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
+  apiKey: "AIzaSyCBiB9d6bxnxZKmt4awqcFih85fHHPwvls",
   authDomain: "my-store-b57e1.firebaseapp.com",
+  databaseURL: "https://my-store-b57e1-default-rtdb.firebaseio.com",
   projectId: "my-store-b57e1",
-  storageBucket: "my-store-b57e1.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  storageBucket: "my-store-b57e1.firebasestorage.app",
+  messagingSenderId: "544909685855",
+  appId: "1:544909685855:web:e1d7b216df50c4353217ea",
+  measurementId: "G-VGWPGHCJ5J"
 };
 
 // Inicializa Firebase.
