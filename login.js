@@ -2,6 +2,26 @@ function isLoggedIn() {
   return localStorage.getItem('jrUnlockedLoggedIn') === 'true';
 }
 
+function getStoredUsers() {
+  try {
+    var users = JSON.parse(localStorage.getItem('jrUnlockedUsers') || '[]');
+    return Array.isArray(users) ? users : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveStoredUsers(users) {
+  localStorage.setItem('jrUnlockedUsers', JSON.stringify(users));
+}
+
+function findStoredUser(email) {
+  var users = getStoredUsers();
+  return users.find(function (user) {
+    return user.email && user.email.toLowerCase() === email.toLowerCase();
+  });
+}
+
 function loginUser(event) {
   event.preventDefault();
   var emailInput = document.getElementById('email');
@@ -14,24 +34,15 @@ function loginUser(event) {
     return;
   }
 
-  if (typeof window.auth === 'undefined') {
-    alert('Firebase no está configurado correctamente. Revisa firebase-config.js.');
+  var user = findStoredUser(email);
+  if (!user || user.password !== password) {
+    alert('Correo o contraseña incorrectos.');
     return;
   }
 
-  window.auth.signInWithEmailAndPassword(email, password)
-    .then(function (userCredential) {
-      localStorage.setItem('jrUnlockedEmail', email);
-      localStorage.setItem('jrUnlockedLoggedIn', 'true');
-      if (typeof window.saveLoginRecord === 'function') {
-        window.saveLoginRecord(email);
-      }
-      window.location.href = 'perfil.html';
-    })
-    .catch(function (error) {
-      console.error('Error al iniciar sesión:', error);
-      alert('No se pudo iniciar sesión. Verifica tu correo y contraseña.');
-    });
+  localStorage.setItem('jrUnlockedEmail', email);
+  localStorage.setItem('jrUnlockedLoggedIn', 'true');
+  window.location.href = 'perfil.html';
 }
 
 function createAccountUser() {
@@ -45,40 +56,27 @@ function createAccountUser() {
     return;
   }
 
-  if (typeof window.auth === 'undefined' || typeof window.db === 'undefined') {
-    alert('Firebase no está configurado correctamente. Revisa firebase-config.js.');
+  if (findStoredUser(email)) {
+    alert('Ya existe una cuenta con ese correo.');
     return;
   }
 
-  window.auth.createUserWithEmailAndPassword(email, password)
-    .then(function (userCredential) {
-      return window.db.collection('users').doc(userCredential.user.uid).set({
-        email: email,
-        createdAt: window.firebase.firestore.FieldValue.serverTimestamp(),
-        source: 'web-registration'
-      });
-    })
-    .then(function () {
-      localStorage.setItem('jrUnlockedEmail', email);
-      localStorage.setItem('jrUnlockedLoggedIn', 'true');
-      if (typeof window.saveLoginRecord === 'function') {
-        window.saveLoginRecord(email);
-      }
-      alert('Cuenta creada correctamente. Bienvenido, ' + email + '.');
-      window.location.href = 'perfil.html';
-    })
-    .catch(function (error) {
-      console.error('Error creando cuenta:', error);
-      var message = 'No se pudo crear la cuenta. Intenta de nuevo más tarde.';
-      if (error && error.message) {
-        message = error.message;
-      }
-      alert(message);
-    });
+  var users = getStoredUsers();
+  users.push({
+    email: email,
+    password: password
+  });
+  saveStoredUsers(users);
+
+  localStorage.setItem('jrUnlockedEmail', email);
+  localStorage.setItem('jrUnlockedLoggedIn', 'true');
+  alert('Cuenta creada correctamente. Bienvenido, ' + email + '.');
+  window.location.href = 'perfil.html';
 }
 
 function logoutUser() {
   localStorage.removeItem('jrUnlockedLoggedIn');
+  localStorage.removeItem('jrUnlockedEmail');
   window.location.href = 'index.html';
 }
 
